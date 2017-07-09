@@ -18,13 +18,10 @@ for iter = 1:num_iters
     %
 
 
-
-
-
-
-
-
-
+    alpha_over_m = alpha / m;
+    h = X * theta;
+    
+    theta = theta - (alpha_over_m * (X' * (h - y)));
 
 
     % ============================================================
