@@ -14,7 +14,9 @@ J = 0;
 %               You should set J to the cost.
 
 
-
+h = X * theta;
+sum_of_squares = sum((h - y) .^ 2);
+J = sum_of_squares / (2 * m);
 
 
 % =========================================================================
