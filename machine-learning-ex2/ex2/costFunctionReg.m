@@ -18,9 +18,15 @@ grad = zeros(size(theta));
 %               derivatives of the cost w.r.t. each parameter in theta
 
 
+[non_reg_cost, non_reg_grad] = costFunction(theta, X, y);
 
+theta(1) = 0;
 
+cost_error = (lambda / (2 * m)) .* (theta' * theta);
+J = non_reg_cost + cost_error;
 
+grad_error = (lambda / m) .* theta;
+grad = non_reg_grad + grad_error;
 
 % =============================================================
 
