@@ -36,14 +36,22 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+z = X * theta;
+h = sigmoid(z);
 
+sigma = (-y')*log(h) - (1-y')*log(1 - h);
 
+non_reg_cost = sigma ./ m;
+non_reg_grad = (X' * (h - y)) ./ m;
 
+temp = theta
+temp(1) = 0;
 
+cost_error = (lambda / (2 * m)) .* (temp' * temp);
+J = non_reg_cost + cost_error;
 
-
-
-
+grad_error = (lambda / m) .* temp;
+grad = non_reg_grad + grad_error;
 
 % =============================================================
 
