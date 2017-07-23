@@ -79,6 +79,16 @@ for j = 1:m
     J = J + (example_cost / m);
 endfor
 
+TempTheta1 = Theta1;
+TempTheta1(:,1) = zeros;
+
+TempTheta2 = Theta2;
+TempTheta2(:,1) = zeros;
+
+reg_terms = (lambda / (2 * m)) * (sum(TempTheta1(:) .^ 2) + sum(TempTheta2(:) .^ 2));
+
+J = J + reg_terms;
+
 % -------------------------------------------------------------
 
 % =========================================================================
