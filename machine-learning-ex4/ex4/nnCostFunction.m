@@ -67,9 +67,9 @@ for j = 1:m
     a1 = [1 X(j,:)];
     
     a2 = sigmoid(Theta1 * a1');
-    a2 = [1 a2'];
+    a2 = [1;a2];
 
-    h = sigmoid(Theta2 * a2');
+    h = sigmoid(Theta2 * a2);
 
     example_y = y(j);
     example_y_vs_all = [1:num_labels] == example_y;
