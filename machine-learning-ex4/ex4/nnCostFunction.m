@@ -66,15 +66,18 @@ Theta2_grad = zeros(size(Theta2));
 for j = 1:m
     a1 = [1 X(j,:)];
     
-    a2 = sigmoid(Theta1 * a1');
-    a2 = [1;a2];
+    z2 = a1 * Theta1';
 
-    h = sigmoid(Theta2 * a2);
+    a2 = sigmoid(z2);
+    a2 = [1 a2];
+
+    z3 = a2 * Theta2';
+    h = sigmoid(z3);
 
     example_y = y(j);
     example_y_vs_all = [1:num_labels] == example_y;
 
-    example_cost = (-example_y_vs_all)*log(h) - (1-example_y_vs_all)*log(1 - h);
+    example_cost = (-example_y_vs_all)*log(h)' - (1-example_y_vs_all)*log(1 - h)';
 
     J = J + (example_cost / m);
 endfor
