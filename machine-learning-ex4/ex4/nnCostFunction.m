@@ -80,6 +80,13 @@ for j = 1:m
     example_cost = (-example_y_vs_all)*log(h)' - (1-example_y_vs_all)*log(1 - h)';
 
     J = J + (example_cost / m);
+
+    delta3 = h - example_y_vs_all;
+    delta2 = (delta3 * Theta2) .* [1 sigmoidGradient(z2)];
+    
+    Theta2_grad = Theta2_grad + (delta3' * a2) ./m;
+    Theta1_grad = Theta1_grad + (delta2(2:end)' * a1) ./m;
+
 endfor
 
 TempTheta1 = Theta1;
