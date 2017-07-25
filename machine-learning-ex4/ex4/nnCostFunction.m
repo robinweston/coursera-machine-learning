@@ -99,6 +99,14 @@ reg_terms = (lambda / (2 * m)) * (sum(TempTheta1(:) .^ 2) + sum(TempTheta2(:) .^
 
 J = J + reg_terms;
 
+function RegularizedThetaGrad = regularizeThetaGradient(ThetaGradient, Theta) 
+    ThetaWithZeroedFirstColumn = [zeros(size(Theta,1), 1) Theta(:,2:end)];
+    RegularizedThetaGrad = ThetaGradient + (lambda / m) .* ThetaWithZeroedFirstColumn;
+end
+
+Theta1_grad = regularizeThetaGradient(Theta1_grad, Theta1);
+Theta2_grad = regularizeThetaGradient(Theta2_grad, Theta2);
+
 % -------------------------------------------------------------
 
 % =========================================================================
