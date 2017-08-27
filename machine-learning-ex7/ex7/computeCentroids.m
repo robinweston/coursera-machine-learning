@@ -26,11 +26,10 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
-
-
-
+for j = 1:K
+    idsInCluster = idx==j;
+    centroids(j,:) = mean(X(idsInCluster,:));
+end
 
 
 % =============================================================
