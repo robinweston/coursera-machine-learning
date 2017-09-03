@@ -45,13 +45,16 @@ errors = (predicted_values - Y);
 errors_r = errors .* R;
 
 
-X_grad = errors_r * Theta;
-Theta_grad = errors_r' * X;
+X_grad = (errors_r * Theta) + (X .* lambda);
+Theta_grad = (errors_r' * X) + (Theta .* lambda);
 
 % =============================================================
 
 squared_errors = errors_r .^ 2;
-J = sum(sum(squared_errors)) / 2;
+
+reg_cost = ((sum(sum(Theta .^ 2))) + (sum(sum(X .^ 2)))) * (lambda / 2);
+
+J = (sum(sum(squared_errors)) / 2) + reg_cost;
 
 grad = [X_grad(:); Theta_grad(:)];
 
